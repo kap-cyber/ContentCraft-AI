@@ -1,7 +1,6 @@
 from langchain_groq import ChatGroq
 from config import (
     GROQ_API_KEY,
-    GOOGLE_API_KEY,
     MODEL_NAME,
     TEMPERATURE,
 )
