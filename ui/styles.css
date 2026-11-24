@@ -1,0 +1,532 @@
+/* ContentCraft AI — presentation layer styles.
+   Colors/fonts come from .streamlit/config.toml; this file only adds
+   layout polish and styles for custom HTML blocks (prefixed `cc-`).
+   All colors are tokens; dark mode (theme_dark.css) only redefines them. */
+
+:root {
+  --cc-primary: #4F46E5;
+  --cc-primary-soft: #EEF0FF;
+  --cc-primary-ink: #3730A3;
+  --cc-primary-tint: #F8F9FF;
+  --cc-accent-border: #C7CAFB;
+  --cc-hero-glow: rgba(99, 102, 241, 0.10);
+  --cc-bg: #F7F8FB;
+  --cc-text: #0F172A;
+  --cc-text-soft: #334155;
+  --cc-muted: #64748B;
+  --cc-subtle: #94A3B8;
+  --cc-border: #E4E7EE;
+  --cc-border-soft: #EEF0F4;
+  --cc-dashed: #DADDE7;
+  --cc-surface: #FFFFFF;
+  --cc-surface-alt: #F8F9FC;
+  --cc-input: #F2F3F8;
+  --cc-radius: 14px;
+  --cc-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+  --cc-shadow-hover: 0 2px 4px rgba(15, 23, 42, 0.05), 0 12px 32px rgba(79, 70, 229, 0.10);
+}
+
+/* ---------- Layout ---------- */
+.block-container {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  max-width: 1240px;
+}
+
+header[data-testid="stHeader"] {
+  background: transparent;
+}
+
+/* ---------- Cards (st.container(border=True, key="card_*")) ---------- */
+[class*="st-key-card_"] {
+  background: var(--cc-surface);
+  border-radius: var(--cc-radius) !important;
+  box-shadow: var(--cc-shadow);
+  padding: 1.4rem 1.5rem !important;
+}
+
+[class*="st-key-card_feature"] {
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  height: 100%;
+}
+
+[class*="st-key-card_feature"]:hover {
+  box-shadow: var(--cc-shadow-hover);
+  border-color: var(--cc-accent-border) !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Sidebar ---------- */
+section[data-testid="stSidebar"] {
+  border-right: 1px solid var(--cc-border-soft);
+}
+
+.cc-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0.25rem 0.5rem;
+}
+
+.cc-brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+  flex-shrink: 0;
+}
+
+.cc-brand-name {
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+  color: var(--cc-text);
+  line-height: 1.2;
+}
+
+.cc-brand-tagline {
+  font-size: 0.76rem;
+  color: var(--cc-muted);
+  margin-top: 2px;
+}
+
+.cc-nav-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cc-subtle);
+  padding: 0.75rem 0.5rem 0.1rem;
+}
+
+[data-testid="stSidebar"] [data-testid="stPageLink"] a {
+  border-radius: 9px;
+  padding: 0.45rem 0.65rem;
+}
+
+[data-testid="stSidebar"] [data-testid="stPageLink"] a span,
+[data-testid="stSidebar"] [data-testid="stPageLink"] a p {
+  font-weight: 500;
+}
+
+.cc-about {
+  font-size: 0.82rem;
+  color: var(--cc-muted);
+  line-height: 1.55;
+}
+
+.cc-about b { color: var(--cc-text); font-weight: 600; }
+
+.cc-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.cc-chip {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--cc-primary-ink);
+  background: var(--cc-primary-soft);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+/* ---------- Page header ---------- */
+.cc-page-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cc-page-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: var(--cc-primary);
+  background: var(--cc-primary-soft);
+  flex-shrink: 0;
+}
+
+.cc-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cc-primary);
+  margin-bottom: 0.2rem;
+}
+
+.cc-page-title {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  color: var(--cc-text);
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.cc-page-subtitle {
+  color: var(--cc-muted);
+  margin: 0.35rem 0 0;
+  font-size: 0.98rem;
+}
+
+.cc-section-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--cc-text);
+}
+
+.cc-section-caption {
+  font-size: 0.84rem;
+  color: var(--cc-muted);
+  margin-top: 2px;
+}
+
+/* ---------- Dashboard ---------- */
+.cc-hero {
+  padding: 2.75rem 2.5rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(1200px 300px at 100% 0%, var(--cc-hero-glow), transparent 60%),
+    var(--cc-surface);
+  border: 1px solid var(--cc-border);
+  box-shadow: var(--cc-shadow);
+}
+
+.cc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cc-primary-ink);
+  background: var(--cc-primary-soft);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+.cc-hero h1 {
+  font-size: 2.6rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.1 !important;
+  margin: 1rem 0 0.6rem !important;
+  padding: 0 !important;
+  color: var(--cc-text);
+}
+
+.cc-hero h1 span { color: var(--cc-primary); }
+
+.cc-hero p {
+  font-size: 1.08rem;
+  color: var(--cc-muted);
+  max-width: 620px;
+  margin: 0;
+}
+
+.cc-feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--cc-primary);
+  background: var(--cc-primary-soft);
+  margin-bottom: 1rem;
+}
+
+.cc-feature-title {
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--cc-text);
+  margin-bottom: 0.4rem;
+}
+
+.cc-feature-desc {
+  color: var(--cc-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  min-height: 6.25em;
+}
+
+.cc-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.cc-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.cc-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cc-primary);
+  border: 1px solid var(--cc-accent-border);
+  flex-shrink: 0;
+}
+
+.cc-step-title { font-weight: 600; font-size: 0.92rem; color: var(--cc-text); }
+.cc-step-text { font-size: 0.85rem; color: var(--cc-muted); margin-top: 2px; }
+
+/* ---------- Empty state ---------- */
+.cc-empty {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  border: 1.5px dashed var(--cc-dashed);
+  border-radius: var(--cc-radius);
+  background: var(--cc-surface-alt);
+}
+
+.cc-empty-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.9rem;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: var(--cc-primary);
+  background: var(--cc-primary-soft);
+}
+
+.cc-empty-title { font-weight: 600; color: var(--cc-text); }
+.cc-empty-text {
+  color: var(--cc-muted);
+  font-size: 0.9rem;
+  max-width: 360px;
+  margin: 0.35rem auto 0;
+}
+
+/* ---------- Blog article preview ---------- */
+.st-key-card_blog_output [data-testid="stMarkdownContainer"] h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  padding-top: 0.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--cc-border);
+  margin-bottom: 1rem;
+}
+
+.st-key-card_blog_output [data-testid="stMarkdownContainer"] h2 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--cc-text);
+  padding-top: 1.1rem;
+}
+
+.st-key-card_blog_output [data-testid="stMarkdownContainer"] p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--cc-text-soft);
+}
+
+.cc-seo {
+  margin-top: 1.25rem;
+  border-radius: 12px;
+  background: var(--cc-surface-alt);
+  border: 1px solid var(--cc-border);
+  padding: 1rem 1.15rem;
+}
+
+.cc-seo-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cc-primary);
+  margin-bottom: 0.75rem;
+}
+
+.cc-seo-row { margin-bottom: 0.7rem; }
+.cc-seo-row:last-child { margin-bottom: 0; }
+.cc-seo-label { font-size: 0.75rem; font-weight: 600; color: var(--cc-muted); margin-bottom: 2px; }
+.cc-seo-value { font-size: 0.92rem; color: var(--cc-text); line-height: 1.5; }
+.cc-seo .cc-chip-row { margin-top: 4px; }
+
+/* ---------- Social post preview ---------- */
+.cc-post {
+  border: 1px solid var(--cc-border);
+  border-radius: 16px;
+  background: var(--cc-surface);
+  padding: 1.15rem 1.25rem;
+}
+
+.cc-post-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.cc-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #818CF8, #4F46E5);
+}
+
+.cc-post-name { font-weight: 600; font-size: 0.92rem; color: var(--cc-text); }
+.cc-post-meta { font-size: 0.78rem; color: var(--cc-muted); }
+
+.cc-platform {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 4px 10px;
+  color: var(--cc-primary-ink);
+  background: var(--cc-primary-soft);
+}
+
+.cc-post-hook {
+  font-weight: 650;
+  font-size: 1.05rem;
+  color: var(--cc-text);
+  line-height: 1.45;
+  margin-bottom: 0.6rem;
+}
+
+.cc-post-body {
+  font-size: 0.95rem;
+  color: var(--cc-text-soft);
+  line-height: 1.65;
+}
+
+.cc-post-cta {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  border-left: 3px solid var(--cc-primary);
+  background: var(--cc-primary-tint);
+  border-radius: 0 8px 8px 0;
+  font-weight: 500;
+  font-size: 0.93rem;
+  color: var(--cc-text);
+}
+
+.cc-post-tags {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  color: var(--cc-primary);
+  font-weight: 500;
+  word-spacing: 4px;
+}
+
+.cc-post-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cc-subtle);
+  margin: 0.9rem 0 0.25rem;
+}
+
+/* ---------- Email composer preview ---------- */
+.cc-mail {
+  border: 1px solid var(--cc-border);
+  border-radius: 14px;
+  background: var(--cc-surface);
+  overflow: hidden;
+}
+
+.cc-mail-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.6rem 1rem;
+  background: var(--cc-surface-alt);
+  border-bottom: 1px solid var(--cc-border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cc-muted);
+}
+
+.cc-mail-dot { width: 9px; height: 9px; border-radius: 99px; background: var(--cc-border); }
+
+.cc-mail-row {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.65rem 1.15rem;
+  border-bottom: 1px solid var(--cc-border-soft);
+  font-size: 0.92rem;
+}
+
+.cc-mail-key { width: 64px; color: var(--cc-muted); flex-shrink: 0; }
+.cc-mail-val { color: var(--cc-text); }
+.cc-mail-subject { font-weight: 600; }
+
+.cc-mail-body {
+  padding: 1.15rem 1.15rem 1.4rem;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--cc-text-soft);
+}
+
+.cc-mail-closing { margin-top: 1rem; }
+
+/* ---------- Widgets ---------- */
+.stButton > button,
+.stDownloadButton > button {
+  font-weight: 600;
+  border-radius: 10px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.stButton > button[kind="primary"] {
+  box-shadow: 0 1px 2px rgba(79, 70, 229, 0.25), 0 4px 12px rgba(79, 70, 229, 0.18);
+}
+
+.stButton > button[kind="primary"]:hover {
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3), 0 8px 20px rgba(79, 70, 229, 0.22);
+}
+
+[data-testid="stWidgetLabel"] p {
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .block-container { padding-top: 1.5rem; }
+  .cc-hero { padding: 1.75rem 1.4rem; }
+  .cc-hero h1 { font-size: 2rem !important; }
+  .cc-steps { grid-template-columns: 1fr; }
+  .cc-page-title { font-size: 1.45rem !important; }
+}
+
+/* Keep dashboard card buttons on one line at medium widths */
+[class*="st-key-card_feature"] .stButton > button {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+[class*="st-key-card_feature"] .stButton > button p {
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  [class*="st-key-card_"] { padding: 1.1rem 1.1rem !important; }
+}
